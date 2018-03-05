@@ -1,7 +1,9 @@
-package com.emiliano.emimovietrends;
+package com.emiliano.emimovietrends.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.emiliano.emimovietrends.R;
 
 public class MainActivity extends AppCompatActivity {
 
