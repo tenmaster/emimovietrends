@@ -22,5 +22,7 @@ public class MovieResponse {
     @SerializedName("total_count")
     ArrayList<Movie> movies;
 
-
+    public ArrayList<Movie> getMovies() {
+        return movies;
+    }
 }

@@ -20,10 +20,10 @@ public interface EmiMoviesAPI {
     String API_KEY = "e9b2e70e0f6aaf295bdd8fb4b7a8ae57";
 
     @GET("/tv/popular?api_key="+API_KEY+"&language=en-US&page={page}\n")
-    Call<List<MovieResponse>> getTrendingMovies(@Path("page") int page);
+    Call<MovieResponse> getTrendingMovies(@Path("page") int page);
 
     @GET("/tv/{movie_id}/similar?"+API_KEY+"={api_key}&language=en-US&page={page}")
-    Call<List<MovieResponse>> getRelatedMovies(@Path("movie_id") int movieID,
+    Call<MovieResponse> getRelatedMovies(@Path("movie_id") int movieID,
                                                @Path("page") int page);
 
             Retrofit retrofit = new Retrofit.Builder()

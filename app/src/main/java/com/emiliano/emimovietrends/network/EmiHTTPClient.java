@@ -1,8 +1,11 @@
 package com.emiliano.emimovietrends.network;
 
+import android.util.Log;
+
+import com.emiliano.emimovietrends.model.Movie;
 import com.emiliano.emimovietrends.model.MovieResponse;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,33 +32,47 @@ public class EmiHTTPClient {
         moviesService = EmiMoviesAPI.retrofit.create(EmiMoviesAPI.class);
     }
 
-    private static void getTrendingMovies(int page) {
-        Call<List<MovieResponse>> call = moviesService.getTrendingMovies(page);
-        call.enqueue(new Callback<List<MovieResponse>>() {
+    private static void getTrendingMovies(final HttpPopularMoviesListener listener, int page) {
+        Call<MovieResponse> call = moviesService.getTrendingMovies(page);
+        call.enqueue(new Callback<MovieResponse>() {
             @Override
-            public void onResponse(Call<List<MovieResponse>> call, Response<List<MovieResponse>> response) {
-
+            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                listener.onPopularMoviesRequestSuccess(response.body().getMovies());
+                Log.d("request", "Success!");
             }
 
             @Override
-            public void onFailure(Call<List<MovieResponse>> call, Throwable t) {
-
+            public void onFailure(Call<MovieResponse> call, Throwable t) {
+                listener.onPopularMoviesRequestFailed();
+                Log.d("request", "Failure!");
             }
         });
     }
 
-    private static void getSimilarMovies(int movieID, int page) {
-        Call<List<MovieResponse>> call = moviesService.getRelatedMovies(movieID, page);
-        call.enqueue(new Callback<List<MovieResponse>>() {
+    private static void getSimilarMovies(final HttpSimilarMoviesListener listener, int movieID, int page) {
+        Call<MovieResponse> call = moviesService.getRelatedMovies(movieID, page);
+        call.enqueue(new Callback<MovieResponse>() {
             @Override
-            public void onResponse(Call<List<MovieResponse>> call, Response<List<MovieResponse>> response) {
-
+            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                listener.onSimilarMoviesRequestSuccess(response.body().getMovies());
+                Log.d("request", "Success!");
             }
 
             @Override
-            public void onFailure(Call<List<MovieResponse>> call, Throwable t) {
-
+            public void onFailure(Call<MovieResponse> call, Throwable t) {
+                listener.onRepositoriesSimilarMoviesRequestFailed();
+                Log.d("request", "Failure!");
             }
         });
+    }
+
+    public interface HttpPopularMoviesListener{
+        void onPopularMoviesRequestSuccess(ArrayList<Movie> movies);
+        void onPopularMoviesRequestFailed();
+    }
+    public interface HttpSimilarMoviesListener{
+        void onSimilarMoviesRequestSuccess(ArrayList<Movie> movies);
+        void onRepositoriesSimilarMoviesRequestFailed();
+
     }
 }
