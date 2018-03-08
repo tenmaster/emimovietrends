@@ -2,13 +2,14 @@ package com.emiliano.emimovietrends.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by emiliano on 05/03/18.
  */
 
-public class MovieResponse {
+public class MovieResponse implements Serializable{
 
     @SerializedName("page")
     int page;
@@ -19,7 +20,7 @@ public class MovieResponse {
     @SerializedName("total_pages")
     int totalPages;
 
-    @SerializedName("total_count")
+    @SerializedName("results")
     ArrayList<Movie> movies;
 
     public ArrayList<Movie> getMovies() {
