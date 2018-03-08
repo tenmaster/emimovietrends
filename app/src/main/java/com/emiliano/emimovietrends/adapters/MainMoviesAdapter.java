@@ -1,7 +1,7 @@
 package com.emiliano.emimovietrends.adapters;
 
 import android.content.Context;
-import android.media.Image;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import com.bumptech.glide.Glide;
 import com.emiliano.emimovietrends.R;
+import com.emiliano.emimovietrends.activity.DetailActivity;
 import com.emiliano.emimovietrends.model.Movie;
 
 import butterknife.BindView;
@@ -37,7 +38,14 @@ public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.Vi
 
         public ViewHolder(View view) {
             super(view);
+            view.setOnClickListener(v -> onClick(v));
             ButterKnife.bind(this, view);
+        }
+
+        private void onClick(View v) {
+            Intent detailActivity = new Intent(mContext, DetailActivity.class);
+            detailActivity.putExtra("Movie", mMoviesDataset.get(getAdapterPosition()));
+            mContext.startActivity(detailActivity);
         }
     }
 
