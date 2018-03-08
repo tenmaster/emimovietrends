@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import com.bumptech.glide.Glide;
 import com.emiliano.emimovietrends.R;
 import com.emiliano.emimovietrends.activity.DetailActivity;
 import com.emiliano.emimovietrends.model.Movie;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,17 +23,14 @@ import butterknife.ButterKnife;
  * Created by emiliano on 23/02/18.
  */
 
-public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.ViewHolder> {
+public class SimilarMoviesAdapter extends RecyclerView.Adapter<SimilarMoviesAdapter.ViewHolder> {
 
-    private static ArrayList<Movie> mMoviesDataset;
+    private static ArrayList<Movie> mSimilarMoviesDataset;
     public static Context mContext;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.item_movie_title)
-        TextView mMovieNameTextview;
-        @BindView(R.id.item_movie_stars)
-        TextView mMovieVotesTextview;
-        @BindView(R.id.item_movie_image)
+
+        @BindView(R.id.item_similar_movie_imageview)
         ImageView mMovieImageTextview;
 
         public ViewHolder(View view) {
@@ -44,21 +41,21 @@ public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.Vi
 
         private void onClick(View v) {
             Intent detailActivity = new Intent(mContext, DetailActivity.class);
-            detailActivity.putExtra("Movie", mMoviesDataset.get(getAdapterPosition()));
+            detailActivity.putExtra("Movie", mSimilarMoviesDataset.get(getAdapterPosition()));
             mContext.startActivity(detailActivity);
         }
     }
 
-    public MainMoviesAdapter(Context context, ArrayList<Movie> moviesDataset) {
+    public SimilarMoviesAdapter(Context context, ArrayList<Movie> moviesDataset) {
         mContext = context;
-        this.mMoviesDataset = moviesDataset;
+        this.mSimilarMoviesDataset = moviesDataset;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent,
                                          int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_movie, parent, false);
+                .inflate(R.layout.item_similar_movie, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
 
@@ -66,14 +63,13 @@ public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mMovieNameTextview.setText(mMoviesDataset.get(position).getTitle());
-        holder.mMovieVotesTextview.setText(String.valueOf(mMoviesDataset.get(position).getVoteAverage()));
-        Glide.with(mContext).load("http://image.tmdb.org/t/p/w185/"+ mMoviesDataset.get(position).getPosterPath()).into(holder.mMovieImageTextview);
+        Glide.with(mContext).load("http://image.tmdb.org/t/p/w185/"+ mSimilarMoviesDataset.get(position).getPosterPath()).into(holder.mMovieImageTextview);
     }
 
     @Override
     public int getItemCount() {
-        return mMoviesDataset.size();
+        return mSimilarMoviesDataset.size();
     }
+
 
 }

@@ -2,4 +2,7 @@
     <string name="app_name">emimovietrends</string>
     <string name="error_loading_movies">Error on getting trending movies</string>
     <string name="success_loading_movies">Movies request success!</string>
+    <string name="detail_average">Score:</string>
+    <string name="detail_release_date">Release Date:</string>
+    <string name="detail_language">Original Language:</string>
 </resources>
