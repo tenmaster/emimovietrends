@@ -13,6 +13,9 @@ public class Movie implements Serializable {
     @SerializedName("original_title")
     String originalTitle;
 
+    @SerializedName("id")
+    int id;
+
     @SerializedName("genre_ids")
     int [] genreIDArray;
 
@@ -61,6 +64,10 @@ public class Movie implements Serializable {
 
     public int getVoteCount() {
         return voteCount;
+    }
+
+    public int getID() {
+        return id;
     }
 
     public float getVoteAverage() {

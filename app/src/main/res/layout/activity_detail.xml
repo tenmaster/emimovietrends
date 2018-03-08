@@ -78,7 +78,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Description" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="@dimen/detail_inline_margin"
+            android:layout_marginTop="@dimen/detail_main_margin"
+            android:background="#B1BCBE" />
     </LinearLayout>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/detail_recycler_view"
+        android:layout_below="@id/description_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

@@ -60,7 +60,7 @@ public class EmiHTTPClient {
 
             @Override
             public void onFailure(Call<MovieResponse> call, Throwable t) {
-                listener.onRepositoriesSimilarMoviesRequestFailed();
+                listener.onSimilarMoviesRequestFailed();
                 Log.d("request", "Failure!");
             }
         });
@@ -72,7 +72,7 @@ public class EmiHTTPClient {
     }
     public interface HttpSimilarMoviesListener{
         void onSimilarMoviesRequestSuccess(ArrayList<Movie> movies);
-        void onRepositoriesSimilarMoviesRequestFailed();
+        void onSimilarMoviesRequestFailed();
 
     }
 }

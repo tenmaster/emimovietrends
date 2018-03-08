@@ -8,4 +8,6 @@
     <dimen name="detail_main_margin">5dp</dimen>
     <dimen name="detail_pic_size">200dp</dimen>
     <dimen name="detail_inline_margin">5dp</dimen>
+    <dimen name="similar_movie_width">100dp</dimen>
+    <dimen name="similar_movie_height">150dp</dimen>
 </resources>
