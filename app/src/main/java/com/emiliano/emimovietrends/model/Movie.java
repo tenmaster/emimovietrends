@@ -2,11 +2,13 @@ package com.emiliano.emimovietrends.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by emiliano on 05/03/18.
  */
 
-public class Movie {
+public class Movie implements Serializable {
 
     @SerializedName("original_title")
     String originalTitle;
