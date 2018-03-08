@@ -76,4 +76,8 @@ public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.Vi
         return mMoviesDataset.size();
     }
 
+    public static void addMoreMovies(ArrayList<Movie> movies){
+        mMoviesDataset.addAll(movies);
+    }
+
 }

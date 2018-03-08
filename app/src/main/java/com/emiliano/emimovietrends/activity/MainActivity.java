@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.emiliano.emimovietrends.R;
 import com.emiliano.emimovietrends.adapters.MainMoviesAdapter;
+import com.emiliano.emimovietrends.listeners.EndlessRecyclerViewScrollListener;
 import com.emiliano.emimovietrends.model.Movie;
 import com.emiliano.emimovietrends.network.EmiHTTPClient;
 
@@ -25,23 +26,45 @@ public class MainActivity extends AppCompatActivity implements EmiHTTPClient.Htt
     @BindView(R.id.main_activity_progress_bar)
     ProgressBar mProgressBar;
 
+    private EndlessRecyclerViewScrollListener scrollListener;
+    private ArrayList<Movie> moviesArraylist = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        EmiHTTPClient.getInstance().getTrendingMovies(this, 1);
         setupAdapter();
+        loadMovies(1);
     }
 
     private void setupAdapter() {
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        scrollListener = new EndlessRecyclerViewScrollListener(mLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                loadMovies(++page);
+            }
+        };
         mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.addOnScrollListener(scrollListener);
+    }
+
+    private void loadMovies(int page) {
+        mProgressBar.setVisibility(View.VISIBLE);
+        EmiHTTPClient.getInstance().getTrendingMovies(this, page);
     }
 
     @Override
     public void onPopularMoviesRequestSuccess(ArrayList<Movie> movies) {
-        mRecyclerView.setAdapter(new MainMoviesAdapter(this, movies));
+
+        moviesArraylist.addAll(movies);
+
+        if(mRecyclerView.getAdapter() == null){
+            mRecyclerView.setAdapter(new MainMoviesAdapter(this, moviesArraylist));
+        }
+
+        mRecyclerView.getAdapter().notifyDataSetChanged();
         Toast.makeText(this, getString(R.string.success_loading_movies), Toast.LENGTH_SHORT).show();
         mRecyclerView.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
