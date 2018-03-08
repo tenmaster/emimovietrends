@@ -1,14 +1,17 @@
 package com.emiliano.emimovietrends.adapters;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import com.bumptech.glide.Glide;
 import com.emiliano.emimovietrends.R;
 import com.emiliano.emimovietrends.model.Movie;
 
@@ -29,6 +32,8 @@ public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.Vi
         TextView mMovieNameTextview;
         @BindView(R.id.item_movie_stars)
         TextView mMovieVotesTextview;
+        @BindView(R.id.item_movie_image)
+        ImageView mMovieImageTextview;
 
         public ViewHolder(View view) {
             super(view);
@@ -55,7 +60,7 @@ public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mMovieNameTextview.setText(mMoviesDataset.get(position).getTitle());
         holder.mMovieVotesTextview.setText(String.valueOf(mMoviesDataset.get(position).getVoteAverage()));
-
+        Glide.with(mContext).load("http://image.tmdb.org/t/p/w185/"+ mMoviesDataset.get(position).getPosterPath()).into(holder.mMovieImageTextview);
     }
 
     @Override
