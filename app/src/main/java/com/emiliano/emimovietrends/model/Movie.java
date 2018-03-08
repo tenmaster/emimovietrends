@@ -44,4 +44,51 @@ public class Movie {
     @SerializedName("poster_path")
     String posterPath;
 
+    public String getOriginalName() {
+        return originalName;
+    }
+
+    public int[] getGenreIDArray() {
+        return genreIDArray;
+    }
+
+    public String[] getOriginCountryArray() {
+        return originCountryArray;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public int getVoteCount() {
+        return voteCount;
+    }
+
+    public float getVoteAverage() {
+        return voteAverage;
+    }
+
+    public String getFirstAirDate() {
+        return firstAirDate;
+    }
+
+    public String getBackdropPath() {
+        return backdropPath;
+    }
+
+    public String getOriginalLanguage() {
+        return originalLanguage;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
 }

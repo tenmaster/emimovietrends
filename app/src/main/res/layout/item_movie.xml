@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/movies_item_padding">
+
+    <TextView
+        tools:text="Movie Title"
+        android:id="@+id/item_movie_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        tools:text="Movie Votes"
+        android:id="@+id/item_movie_stars"
+        android:layout_width="match_parent"
+        android:gravity="right"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
