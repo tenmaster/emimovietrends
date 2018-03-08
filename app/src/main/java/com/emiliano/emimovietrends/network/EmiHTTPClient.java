@@ -32,7 +32,7 @@ public class EmiHTTPClient {
         moviesService = EmiMoviesAPI.retrofit.create(EmiMoviesAPI.class);
     }
 
-    private static void getTrendingMovies(final HttpPopularMoviesListener listener, int page) {
+    public void getTrendingMovies(final HttpPopularMoviesListener listener, int page) {
         Call<MovieResponse> call = moviesService.getTrendingMovies(page);
         call.enqueue(new Callback<MovieResponse>() {
             @Override
@@ -49,7 +49,7 @@ public class EmiHTTPClient {
         });
     }
 
-    private static void getSimilarMovies(final HttpSimilarMoviesListener listener, int movieID, int page) {
+    public void getSimilarMovies(final HttpSimilarMoviesListener listener, int movieID, int page) {
         Call<MovieResponse> call = moviesService.getRelatedMovies(movieID, page);
         call.enqueue(new Callback<MovieResponse>() {
             @Override

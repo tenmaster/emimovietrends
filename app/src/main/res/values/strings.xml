@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">emimovietrends</string>
+    <string name="error_loading_movies">Error on getting trending movies</string>
+    <string name="success_loading_movies">Movies request success!</string>
 </resources>
