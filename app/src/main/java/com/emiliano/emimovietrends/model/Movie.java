@@ -8,20 +8,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class Movie {
 
-    @SerializedName("original_name")
-    String originalName;
+    @SerializedName("original_title")
+    String originalTitle;
 
     @SerializedName("genre_ids")
     int [] genreIDArray;
 
-    @SerializedName("origin_country")
-    String [] originCountryArray;
-
-    @SerializedName("name")
-    String name;
+    @SerializedName("title")
+    String title;
 
     @SerializedName("popularity")
-    int popularity;
+    float popularity;
 
     @SerializedName("vote_count")
     int voteCount;
@@ -29,8 +26,8 @@ public class Movie {
     @SerializedName("vote_average")
     float voteAverage;
 
-    @SerializedName("first_air_date")
-    String firstAirDate;
+    @SerializedName("release_date")
+    String releaseDate;
 
     @SerializedName("backdrop_path")
     String backdropPath;
@@ -44,23 +41,19 @@ public class Movie {
     @SerializedName("poster_path")
     String posterPath;
 
-    public String getOriginalName() {
-        return originalName;
+    public String getOriginalTitle() {
+        return originalTitle;
     }
 
     public int[] getGenreIDArray() {
         return genreIDArray;
     }
 
-    public String[] getOriginCountryArray() {
-        return originCountryArray;
+    public String getTitle() {
+        return title;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getPopularity() {
+    public float getPopularity() {
         return popularity;
     }
 
@@ -72,8 +65,8 @@ public class Movie {
         return voteAverage;
     }
 
-    public String getFirstAirDate() {
-        return firstAirDate;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
     public String getBackdropPath() {

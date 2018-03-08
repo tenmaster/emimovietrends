@@ -53,8 +53,8 @@ public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mMovieNameTextview.setText(mMoviesDataset.get(position).getName());
-        holder.mMovieVotesTextview.setText(mMoviesDataset.get(position).getVoteCount());
+        holder.mMovieNameTextview.setText(mMoviesDataset.get(position).getTitle());
+        holder.mMovieVotesTextview.setText(String.valueOf(mMoviesDataset.get(position).getVoteAverage()));
 
     }
 

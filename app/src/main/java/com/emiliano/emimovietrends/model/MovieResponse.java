@@ -19,7 +19,7 @@ public class MovieResponse {
     @SerializedName("total_pages")
     int totalPages;
 
-    @SerializedName("total_count")
+    @SerializedName("results")
     ArrayList<Movie> movies;
 
     public ArrayList<Movie> getMovies() {
